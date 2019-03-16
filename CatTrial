@@ -1,0 +1,30 @@
+import tmdbsimple
+tmdbsimple.API_KEY = "14332739417600e894734cc3287ace7e"
+
+import requests
+
+API_KEY = "14332739417600e894734cc3287ace7e"
+
+get_movie_info = requests.get("https://api.themoviedb.org/3/search/movie?api_key=14332739417600e894734cc3287ace7e&language=en-US&query=titanic&page=1&include_adult=false")
+
+data = get_movie_info.json()
+
+brut = data["results"][0]["id"]
+movie = tmdbsimple.Movies(brut)
+response = movie.info()
+print(response)
+
+#import json
+#print(json.dumps(response))
+
+# with open('data.json', 'w') as outfile:
+#     json.dump(json.dumps(response), 'data.json', indent=4)
+
+def GetDuration ():
+    duration = response["runtime"]
+    print(duration)
+
+GetDuration()
+
+
+
