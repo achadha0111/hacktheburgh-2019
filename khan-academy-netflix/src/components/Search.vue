@@ -1,13 +1,29 @@
 <template>
-    <div class="md-layout">
-        <div class="md-layout-item"></div>
-        <div class="md-layout-item">
-            <md-field>
-                <md-input id= "search" placeholder= "Search for your film" v-model="filmString"></md-input>
-            </md-field>
+    <div>
+
+        <div class = "md-layout">
+            <div class="md-layout-item"></div>
+            <div class="md-layout-item">
+                <md-field>
+                    <md-input id= "search" placeholder= "Search for your film" v-model="filmString"></md-input>
+                </md-field>
+            </div>
+            <div class="md-layout-item"></div>
         </div>
-        <div class="md-layout-item">git </div>
+
+        <div class="button">
+            <div class="md-layout" :class="`md-alignment-${vertical}-${horizontal}`">
+
+                <div class="md-layout-item" style="margin-bottom:20px;">
+                    <md-button class="md-raised search-btn">Learn and Chill</md-button>
+                </div>
+
+            </div>
+        </div>
+
     </div>
+
+
 </template>
 
 <script>
@@ -34,4 +50,5 @@
         border-radius: 3px;
         height:50px;
     }
+
 </style>
