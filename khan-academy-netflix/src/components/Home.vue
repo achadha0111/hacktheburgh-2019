@@ -1,16 +1,21 @@
 <template>
   <div class="main">
-   <div class="col-md-12">
+      <div class="container">
 
-       <!-- Title Text -->
-       <h1 class="title-text col-md-12"> KAn't Netflix and Chill </h1>
+          <div class="col-md-12">
 
-       <Search />
-       <!-- TODO Add Subtitle -->
-       <!--<h3 class="subtitle-text col-md-12">Looking for a film to watch with your SO?-->
-           <!--How about you expand the horizons of your mind with Khan Academy?</h3>-->
+              <!-- Title Text -->
+              <h1 class="title-text col-md-12"> KAn't Netflix and Chill </h1>
 
-   </div>
+              <Search />
+              <!-- TODO Add Subtitle -->
+              <!--<h3 class="subtitle-text col-md-12">Looking for a film to watch with your SO?-->
+              <!--How about you expand the horizons of your mind with Khan Academy?</h3>-->
+
+          </div>
+
+      </div>
+
   </div>
 </template>
 
@@ -20,8 +25,10 @@ import Vue from 'vue'
 import Search from './Search'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
+import { VueSpinners } from '@saeris/vue-spinners'
 
 Vue.use(VueMaterial);
+Vue.use(VueSpinners);
 
 export default {
   name: 'HomePage',
