@@ -1,6 +1,6 @@
 import json
 
-with open('KA.json', encoding="utf8") as json_file:
+with open('data/KA.json', encoding="utf8") as json_file:
     data = json.load(json_file)
 
 index = 0
@@ -27,7 +27,8 @@ for q in data["children"]:
                                             category['video_list'].append(video)
                                         category['category_duration_seconds'] = total_category_duration
                                         category['category_duration_minutes'] = total_category_duration/60
-                                    parsed_data.append(category)
+                                    if category['video_list']:
+                                        parsed_data.append(category)
 
-with open('parsed_data.json', 'w') as outfile:
+with open('data/parsed_data.json', 'w') as outfile:
     json.dump(parsed_data, outfile, indent=4)
