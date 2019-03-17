@@ -2,8 +2,9 @@ import requests
 import tmdbsimple
 
 import os
+import json
 
-from flask import Flask, jsonify
+from flask import Flask, Response
 from utils import categories_finder
 
 tmdbsimple.API_KEY = os.environ.get("API_KEY")
@@ -25,19 +26,25 @@ def get_movie_details(movie_title):
 
         response = movie.info()
 
-        movie_info = {'duration': response["runtime"], 'image':response["poster_path"], 'overview': response["overview"], 'title': response["title"]}
+        movie_info = {'duration': response["runtime"],
+                      'image':"https://image.tmdb.org/t/p/original/{0}".format(response["poster_path"]),
+                      'overview': response["overview"], 'title': response["title"]}
 
         video_suggestions, _ = categories_finder.get_videos_for_duration(response["runtime"]*60)
 
         # Construct result object
 
-        result = {"movie_result": [movie_info], "video_suggestions": video_suggestions}
+        result = Response(json.dumps({"movie_result": [movie_info], "video_suggestions": video_suggestions}))
 
-        return jsonify(result), 200
+        result.headers['Access-Control-Allow-Origin'] = '*'
 
-    return jsonify(
-        {"movie_result": [], "video_suggestions": []}
-    ), 200
+        return result, 200
+
+    result = Response(json.dumps({"movie_result": [], "video_suggestions": []}))
+
+    result.headers['Access-Control-Allow-Origin'] = '*'
+
+    return result, 200
 
 
 if __name__ == "__main__":

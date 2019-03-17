@@ -5,7 +5,8 @@
           <div class="col-md-12">
 
               <!-- Title Text -->
-              <h1 class="title-text col-md-12"> KAn't Netflix and Chill </h1>
+              <img src="https://i.imgur.com/i4JR9Ku.png">
+              <h1 class="title-text col-md-12"> Binges Khan </h1>
 
               <Search />
               <!-- TODO Add Subtitle -->
