@@ -27,8 +27,10 @@
         </div>
 
 
+        <h1 class="title-text col-md-12" v-if="movieNotFound" style="color: darkred"> Sorry, couldn't find that film. </h1>
 
         <!-- Movie Result -->
+
 
         <div v-for="movie in movieResult" class="results col-lg-10 col-md-offset-2 col-md-8">
             <md-card class="md-primary" flex md-with-hover md-elevation="15" style="margin-bottom:20px;">
@@ -83,7 +85,7 @@
             movieResult: [],
             results: [],
             filmString: '',
-            loading: true
+            movieNotFound: false,
         }),
 
         methods: {
@@ -91,19 +93,20 @@
                 this.loading=true;
                 this.results = [];
                 this.movieResult = [];
-                console.log("Button pressed");
+                this.movieNotFound = false;
+
                 setTimeout(this.fetchDummyResults, 3000);
-                this.loading = false;
+
                 this.filmString = '';
+
             },
 
             fetchDummyResults: function() {
-                this.movieResult = [{
-                    "title": "Green Book",
-                    "overview": "A world renowed composer of colour decides to embark on a concert tour to the Southern" +
-                    "American states during the heights of racial segregation.",
-                    "runtime": 145
-                }];
+                this.movieResult = [];
+
+                if (this.movieResult.length === 0) {
+                    this.movieNotFound = true;
+                }
 
                 let results = [
                     {
