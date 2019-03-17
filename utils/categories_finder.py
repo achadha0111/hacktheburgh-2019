@@ -29,12 +29,5 @@ def get_videos_for_duration(duration):
     return final_categories, current_best_match_difference
 
 
-x, y = get_videos_for_duration(12000)
-
-print('ONLY OFF BY ' + str(y)),
-
-print(json.dumps(x, indent=4))
-
-
 
 
