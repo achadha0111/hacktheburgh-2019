@@ -1,52 +1,25 @@
-import tmdbsimple
-tmdbsimple.API_KEY = "14332739417600e894734cc3287ace7e"
+import json
 
 import requests
+import tmdbsimple
 
+tmdbsimple.API_KEY = "14332739417600e894734cc3287ace7e"
 API_KEY = "14332739417600e894734cc3287ace7e"
 
-get_movie_info = requests.get("https://api.themoviedb.org/3/search/movie?api_key=14332739417600e894734cc3287ace7e&language=en-US&query=titanic&page=1&include_adult=false")
 
-data = get_movie_info.json()
+def get_movie_details(movie_title):
+    get_movie_info = requests.get(
+        "https://api.themoviedb.org/3/search/movie?api_key=14332739417600e894734cc3287ace7e&language=en-US&query=" + movie_title + "&page=1&include_adult=false")
+    data = get_movie_info.json()
+    if len(data["results"]):
+        brut = data["results"][0]["id"]
+        movie = tmdbsimple.Movies(brut)
+        response = movie.info()
 
-brut = data["results"][0]["id"]
-movie = tmdbsimple.Movies(brut)
-response = movie.info()
-imagine = data["results"][1]["id"]
-image = tmdbsimple.Movies(imagine)
+        movie_info = {'duration': response["runtime"], 'image':response["poster_path"], 'overview': response["overview"], 'title': response["title"]}
 
-print(response)
-
-#import json
-#print(json.dumps(response))
-
-# with open('data.json', 'w') as outfile:
-#     json.dump(json.dumps(response), 'data.json', indent=4)
-
-def GetDuration ():
-    duration = response["runtime"]
-    return duration
-
-def GetImage():
-    imaginea = image
-    print(imaginea)
-    return imaginea
-
-def GetOverview ():
-    OverviewDescription = response["overview"]
-    return OverviewDescription
-    print(OverviewDescription)
-
-def GetTitle():
-    Title = response["title"]
-    return Title
-    print(Title)
+        return movie_info
+    return "MOVIE NOT FOUND"
 
 
-GetDuration()
-GetImage()
-GetOverview()
-GetTitle()
-
-
-
+print(json.dumps(get_movie_details("cars2"), indent=4))
