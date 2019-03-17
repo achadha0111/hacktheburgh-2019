@@ -35,32 +35,38 @@
             <!--</div>-->
         <!--</div>-->
 
-        <!-- Results -->
-        <div class="results">
-            <div class="md-layout" :class="`md-alignment`">
+        <!-- Movie Result -->
 
-                <div class="md-layout-item" style="margin-bottom:20px;">
-                    <div v-for="video in results" class="results col-lg-4 col-md-6 col-xs-12">
-                        <md-card class="md-primary" flex md-with-hover md-elevation="15">
-                            <md-card-header>
-                                <div class="md-title">{{video.title}}</div>
-                                <div class="md-subhead" style="font-weight:bold;">
-                                    Runtime: {{ video.runtime }} <br>
-                                </div>
-                            </md-card-header>
-                            <md-card-content>
-                                {{video.overview}}
-                            </md-card-content>
-                        </md-card>
+        <div v-for="movie in movieResult" class="results col-lg-10 col-md-offset-2 col-md-8">
+            <md-card class="md-primary" flex md-with-hover md-elevation="15" style="margin-bottom:20px;">
+                <md-card-header>
+                    <div class="md-title">{{movie.title}}</div>
+                    <div class="md-subhead" style="font-weight:bold;">
+                        Runtime: {{ movie.runtime }} <br>
                     </div>
-                </div>
-
-            </div>
+                </md-card-header>
+                <md-card-content>
+                    {{movie.overview}}
+                </md-card-content>
+            </md-card>
         </div>
 
-
-
+        <!-- Video Results -->
+        <div>
+            <md-card v-for="video in results" class="md-primary col-md-3 videos" flex md-with-hover md-elevation="15">
+                <md-card-header>
+                    <div class="md-title">{{video.title}}</div>
+                    <div class="md-subhead" style="font-weight:bold;">
+                        Runtime: {{ video.runtime }} <br>
+                    </div>
+                </md-card-header>
+                <md-card-content>
+                    {{video.overview}}
+                </md-card-content>
+            </md-card>
+        </div>
     </div>
+
 
 
 </template>
@@ -73,6 +79,7 @@
     export default {
         name: 'search',
         data: () => ({
+            movieResult: [],
             results: [],
             filmString: '',
             loading: false
@@ -82,7 +89,13 @@
             startSearch: function() {
                 this.loading=true;
                 console.log("Button pressed");
-                setTimeout(this.fetchDummyResults, 6000);
+                setTimeout(this.fetchDummyResults, 2000);
+                this.movieResult = [{
+                  "title": "Green Book",
+                  "overview": "A world renowed composer of colour decides to embark on a concert tour to the Southern" +
+                  "American states during the heights of racial segregation.",
+                  "runtime": 145
+                }];
                 this.filmString = '';
             },
 
@@ -97,6 +110,32 @@
                         "title": "Macroeconomics",
                         "overview": "Basics of Macroeconomics",
                         "runtime": 200
+                    },
+                    {
+                        "title": "Macroeconomics",
+                        "overview": "Basics of Macroeconomics",
+                        "runtime": 200
+                    },
+                    {
+                        "title": "Macroeconomics",
+                        "overview": "Basics of Macroeconomics",
+                        "runtime": 200
+                    },
+                    {
+                        "title": "Macroeconomics",
+                        "overview": "Basics of Macroeconomics",
+                        "runtime": 200
+                    },
+                    {
+                        "title": "Macroeconomics",
+                        "overview": "Basics of Macroeconomics",
+                        "runtime": 200
+                    },
+                    {
+                        "title": "Macroeconomics",
+                        "overview": "Basics of Macroeconomics, covers topics like Inflation, Philips Curve " +
+                        "and Income Inequality.",
+                        "runtime": 200
                     }
                 ]
             }
@@ -106,6 +145,11 @@
 </script>
 
 <style scoped>
+
+    .search-btn {
+        background: #092962;
+        color: white;
+    }
     #search {
         text-align: center;
         color: black;
@@ -114,6 +158,15 @@
         background-color: none;
         border-radius: 3px;
         height:50px;
+    }
+
+
+
+    .videos {
+        width: 320px;
+        margin: 4px;
+        display: inline-block;
+        vertical-align: top;
     }
 
 </style>
