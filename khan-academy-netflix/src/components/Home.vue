@@ -25,15 +25,15 @@ import Vue from 'vue'
 import Search from './Search'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
-import { VueSpinners } from '@saeris/vue-spinners'
+import BarLoader from '@saeris/vue-spinners'
 
 Vue.use(VueMaterial);
-Vue.use(VueSpinners);
 
 export default {
   name: 'HomePage',
   components: {
-      Search
+      Search,
+      BarLoader
   }
 }
 </script>

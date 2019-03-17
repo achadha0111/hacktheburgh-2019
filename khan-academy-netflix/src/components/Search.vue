@@ -26,7 +26,6 @@
             </div>
         </div>
 
-        <!-- Preloader -->
 
 
         <!-- Movie Result -->
@@ -45,6 +44,7 @@
             </md-card>
         </div>
 
+        <h2 class="title-text col-md-12" v-if="results.length > 0"> Video Suggestions </h2>
         <!-- Video Results -->
         <div>
             <md-card v-for="video in results" class="md-primary col-md-3 videos" flex md-with-hover md-elevation="15">
@@ -89,6 +89,8 @@
         methods: {
             startSearch: function() {
                 this.loading=true;
+                this.results = [];
+                this.movieResult = [];
                 console.log("Button pressed");
                 setTimeout(this.fetchDummyResults, 3000);
                 this.loading = false;
@@ -233,6 +235,11 @@
         margin: 4px;
         display: inline-block;
         vertical-align: top;
+    }
+
+    md-progress-spinner {
+        margin: 24px;
+        z-index: 10000;
     }
 
 </style>
