@@ -12,6 +12,8 @@ data = get_movie_info.json()
 brut = data["results"][0]["id"]
 movie = tmdbsimple.Movies(brut)
 response = movie.info()
+imagine = data["results"][1]["id"]
+image = tmdbsimple.Movies(imagine)
 print(response)
 
 #import json
@@ -22,9 +24,15 @@ print(response)
 
 def GetDuration ():
     duration = response["runtime"]
-    print(duration)
+    return duration
+
+def GetImage():
+    imaginea = image
+    print(imaginea)
+    return imaginea
 
 GetDuration()
+GetImage()
 
 
 
