@@ -37,10 +37,16 @@ def GetOverview ():
     return OverviewDescription
     print(OverviewDescription)
 
+def GetTitle():
+    Title = response["title"]
+    return Title
+    print(Title)
+
 
 GetDuration()
 GetImage()
 GetOverview()
+GetTitle()
 
 
 
